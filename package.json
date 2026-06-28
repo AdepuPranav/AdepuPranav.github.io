@@ -3,17 +3,22 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "npx @tailwindcss/cli -i ./src/style.css -o ./style.css",
-    "watch": "npx @tailwindcss/cli -i ./src/style.css -o ./style.css --watch",
-    "dev": "npx http-server -p 8085 -c-1 -o",
-    "start": "npx http-server -p 8085 -c-1 -o"
+    "client-install": "npm install --prefix client",
+    "client": "npm run dev --prefix client",
+    "backend": "nodemon server.js",
+    "dev": "concurrently \"npm run backend\" \"npm run client\""
   },
   "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.3.1"
+    "mongoose": "^8.3.1",
+    "nodemon": "^3.1.14"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.1",
+    "concurrently": "^10.0.3",
     "tailwindcss": "^4.3.1"
   }
 }
