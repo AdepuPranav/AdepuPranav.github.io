@@ -445,6 +445,54 @@ module.exports = AzureHealthAssistant;`
   // Initialize GitHub fetch process
   fetchGitHubData();
 
+  // --- Contact Form Submission to MongoDB ---
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const nameInput = document.getElementById('contact-name');
+      const emailInput = document.getElementById('contact-email');
+      const messageInput = document.getElementById('contact-message');
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.textContent;
+      
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'TRANSMITTING...';
+      
+      const payload = {
+        name: nameInput.value,
+        email: emailInput.value,
+        text: messageInput.value
+      };
+      
+      const apiURL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:5000/api/messages'
+        : '/api/messages';
+        
+      try {
+        const response = await fetch(apiURL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+        
+        if (!response.ok) throw new Error('API response error');
+        
+        alert('Message Queued Successfully');
+        contactForm.reset();
+      } catch (err) {
+        console.warn('Express backend message webhook offline. Mocking submission alert.', err);
+        alert('Connection error.\nMessage Mocked successfully locally.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      }
+    });
+  }
+
   // Focus the first window by default
   const firstWindow = document.querySelector('.retro-window');
   if (firstWindow) {

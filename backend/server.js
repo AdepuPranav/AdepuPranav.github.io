@@ -20,7 +20,9 @@ const allowedOrigins = [
   process.env.CLIENT_ORIGIN || 'http://localhost:5173',
   'http://localhost:5174',
   'http://127.0.0.1:5173',
-  'http://127.0.0.1:5174'
+  'http://127.0.0.1:5174',
+  'http://localhost:8085',
+  'http://127.0.0.1:8085'
 ];
 
 app.use(cors({
@@ -40,7 +42,7 @@ app.use(cors({
 app.use(express.json());
 
 // Establish connection protocols to MongoDB using mongoose
-const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio-pranav';
+const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://pranavadepu17_db_user:L4ftfFYZKbi7rdAt@cluster0.mjcrnem.mongodb.net/portfolio?appName=Cluster0';
 mongoose.connect(mongoURI)
   .then(async () => {
     console.log('DATABASE: MongoDB server connection: ESTABLISHED // OK');

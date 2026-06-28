@@ -874,21 +874,20 @@
         </p>
 
         <!-- Form layout -->
-        <form class="space-y-4" action="#" method="POST" onsubmit="event.preventDefault(); alert('Transmission connection mock established. Payload sent.');">
-          
+        <form id="contact-form" class="space-y-4" action="#" method="POST">
           <div class="space-y-1">
-            <label for="name" class="block font-mono text-xs font-bold">SENDER_NAME.TXT:</label>
-            <input type="text" id="name" required class="w-full border-2 border-black px-3 py-2 text-sm focus:outline-none focus:bg-retro-light font-mono" placeholder="Enter name...">
+            <label for="contact-name" class="block font-mono text-xs font-bold">SENDER_NAME.TXT:</label>
+            <input type="text" id="contact-name" required class="w-full border-2 border-black px-3 py-2 text-sm focus:outline-none focus:bg-retro-light font-mono" placeholder="Enter name...">
           </div>
 
           <div class="space-y-1">
-            <label for="email" class="block font-mono text-xs font-bold">SENDER_EMAIL.TXT:</label>
-            <input type="email" id="email" required class="w-full border-2 border-black px-3 py-2 text-sm focus:outline-none focus:bg-retro-light font-mono" placeholder="Enter email address...">
+            <label for="contact-email" class="block font-mono text-xs font-bold">SENDER_EMAIL.TXT:</label>
+            <input type="email" id="contact-email" required class="w-full border-2 border-black px-3 py-2 text-sm focus:outline-none focus:bg-retro-light font-mono" placeholder="Enter email address...">
           </div>
 
           <div class="space-y-1">
-            <label for="message" class="block font-mono text-xs font-bold">PAYLOAD_MESSAGE.LOG:</label>
-            <textarea id="message" rows="4" required class="w-full border-2 border-black px-3 py-2 text-sm focus:outline-none focus:bg-retro-light font-mono" placeholder="Write logs here..."></textarea>
+            <label for="contact-message" class="block font-mono text-xs font-bold">PAYLOAD_MESSAGE.LOG:</label>
+            <textarea id="contact-message" rows="4" required class="w-full border-2 border-black px-3 py-2 text-sm focus:outline-none focus:bg-retro-light font-mono" placeholder="Write logs here..."></textarea>
           </div>
 
           <div class="pt-2 text-right">

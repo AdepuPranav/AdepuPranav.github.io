@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Project from './models/Project.js';
+import Message from './models/Message.js';
 
 dotenv.config();
 
@@ -74,7 +75,7 @@ const defaultProjects = [
 ];
 
 const seedDB = async () => {
-  const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio-pranav';
+  const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://pranavadepu17_db_user:L4ftfFYZKbi7rdAt@cluster0.mjcrnem.mongodb.net/portfolio?appName=Cluster0';
   try {
     await mongoose.connect(mongoURI);
     console.log('Connected to MongoDB for seeding.');
@@ -84,6 +85,17 @@ const seedDB = async () => {
 
     await Project.insertMany(defaultProjects);
     console.log('Database seeded with standard portfolio projects successfully!');
+
+    // Seed contact details
+    await Message.deleteMany({});
+    console.log('Cleared existing messages from database collection.');
+
+    await new Message({
+      name: "Pranav Adepu",
+      email: "pranavadepu17@gmail.com",
+      text: "Developer Contact: GitHub - https://github.com/AdepuPranav | LinkedIn - https://www.linkedin.com/in/adepu-pranav-183618284/"
+    }).save();
+    console.log('Database seeded with contact details successfully!');
     
     process.exit(0);
   } catch (error) {
