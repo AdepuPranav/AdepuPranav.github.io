@@ -170,7 +170,7 @@ export default function App() {
   // --- Initial Setup and API Fetching ---
   const loadProjects = () => {
     setLoadingProjects(true);
-    fetch('http://localhost:5000/api/projects')
+    fetch('/api/projects')
       .then(res => {
         if (!res.ok) throw new Error("Backend server offline");
         return res.json();
@@ -257,7 +257,7 @@ export default function App() {
       }));
 
       try {
-        const response = await fetch(`http://localhost:5000/api/github/repo?repo=${repo}`);
+        const response = await fetch(`/api/github/repo?repo=${repo}`);
         if (!response.ok) throw new Error("Backend proxy rate-limited or offline");
         const proxyData = await response.json();
 
@@ -288,7 +288,7 @@ export default function App() {
     setSubmittingContact(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/messages', {
+      const response = await fetch('/api/messages', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -378,7 +378,7 @@ export default function App() {
           }
           setTerminalHistory(prev => [...prev, "GET /api/messages // Retrieving payload..."]);
           try {
-            const res = await fetch('http://localhost:5000/api/messages', {
+            const res = await fetch('/api/messages', {
               headers: { 'Authorization': `Bearer ${adminToken}` }
             });
             if (!res.ok) throw new Error(res.statusText);
@@ -405,7 +405,7 @@ export default function App() {
           setTerminalHistory(prev => [...prev, "Verifying JWT credentials..."]);
           // We can try to test fetch to verify JWT validity
           try {
-            const res = await fetch('http://localhost:5000/api/messages', {
+            const res = await fetch('/api/messages', {
               headers: { 'Authorization': `Bearer ${token}` }
             });
             if (res.ok) {
@@ -473,7 +473,7 @@ export default function App() {
 
           setTerminalHistory(prev => [...prev, `POST /api/projects // Writing slug '${slug}'...`]);
           try {
-            const res = await fetch('http://localhost:5000/api/projects', {
+            const res = await fetch('/api/projects', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -524,7 +524,7 @@ export default function App() {
 
           setTerminalHistory(prev => [...prev, `DELETE /api/projects/slug/${slug} // Removing record...`]);
           try {
-            const res = await fetch(`http://localhost:5000/api/projects/slug/${slug}`, {
+            const res = await fetch(`/api/projects/slug/${slug}`, {
               method: 'DELETE',
               headers: { 'Authorization': `Bearer ${adminToken}` }
             });

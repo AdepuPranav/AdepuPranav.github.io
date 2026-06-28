@@ -1,11 +1,16 @@
 {
   "name": "portfolio-pranav",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "build": "npx @tailwindcss/cli -i ./src/style.css -o ./style.css",
     "watch": "npx @tailwindcss/cli -i ./src/style.css -o ./style.css --watch",
     "dev": "npx http-server -p 8085 -c-1 -o",
     "start": "npx http-server -p 8085 -c-1 -o"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.3.1"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.1",
