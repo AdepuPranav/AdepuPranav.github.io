@@ -281,3 +281,5 @@ app.listen(PORT, () => {
   console.log(`login ${devToken}`);
   console.log('========================================================================\n');
 });
+
+export default app;

@@ -3,18 +3,13 @@
   "buildCommand": "cd client && npm install && npm run build",
   "outputDirectory": "client/dist",
   "installCommand": "npm install",
-  "framework": null,
   "functions": {
-    "api/**/*.js": {
+    "server.js": {
       "runtime": "nodejs20.x"
     }
   },
   "rewrites": [
-    { "source": "/api/projects/slug/:slug", "destination": "/api/projects/slug/[slug]" },
-    { "source": "/api/projects",             "destination": "/api/projects" },
-    { "source": "/api/github/repo",          "destination": "/api/github/repo" },
-    { "source": "/api/messages",             "destination": "/api/messages" },
-    { "source": "/api/status",               "destination": "/api/status" },
-    { "source": "/(.*)",                     "destination": "/index.html" }
+    { "source": "/api/(.*)", "destination": "/server.js" },
+    { "source": "/(.*)", "destination": "/$1" }
   ]
 }
